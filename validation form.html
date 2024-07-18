@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateform() {
+            var name = document.myform.name.value;
+            var password = document.myform.password.value;
+            var nameError = document.getElementById("nameError");
+            var passwordError = document.getElementById("passwordError");
+            var isValid = true;
+
+            // Clear previous error messages
+            nameError.innerHTML = "";
+            passwordError.innerHTML = "";
+
+            if (name == null || name == "") {
+                nameError.innerHTML = "Name can't be blank";
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                passwordError.innerHTML = "Password must be at least 6 characters long.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    
+<form name="myform" method="post" action="/path/to/abc.jsp" onsubmit="return validateform()">
+
+        Name: <input type="text" name="name"><br/>
+        <span id="nameError" class="error"></span><br/>
+        Password: <input type="password" name="password"><br/>
+        <span id="passwordError" class="error"></span><br/>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
